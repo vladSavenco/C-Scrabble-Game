@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vlad_Catalin_Savenco_Scrabble", "Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble.vcxproj", "{AD093CB3-E65A-4768-B5CF-7195A901F672}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Debug|x64.ActiveCfg = Debug|x64
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Debug|x64.Build.0 = Debug|x64
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Debug|x86.ActiveCfg = Debug|Win32
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Debug|x86.Build.0 = Debug|Win32
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Release|x64.ActiveCfg = Release|x64
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Release|x64.Build.0 = Release|x64
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Release|x86.ActiveCfg = Release|Win32
+		{AD093CB3-E65A-4768-B5CF-7195A901F672}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C656DAC-0574-4339-A34D-8CAB8BDC057E}
+	EndGlobalSection
+EndGlobal

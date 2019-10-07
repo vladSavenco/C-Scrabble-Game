@@ -154,6 +154,7 @@
     <ClCompile Include="Vlad_Catalin_Savenco_Scrabble.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CheckValue.h" />
     <ClInclude Include="Vlad_Catalin_Savenco_Scrabble.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

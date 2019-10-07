@@ -13,7 +13,7 @@ bool check(string word)
 {
 	for (std::string::size_type i = 0; i < word.size(); ++i)
 	{
-		if (strchr("abcdefghiiklmnopqrstuvwxyz", word[i]))
+		if (strchr("abcdefghijklmnopqrstuvwxyz", word[i]))
 		{
 		}
 		else
@@ -79,8 +79,7 @@ int main()
 	int nr=0,m=15;
 	string word;
 
-	cell* cl;
-	cl = new cell[m + 1];
+	struct cell cl[15][15];
 
 	typedef vector< tuple<string, int> > my_tuple;
 	my_tuple List0;
@@ -88,46 +87,46 @@ int main()
 	File.open("words.txt");
 	boardFile.open("BoardFile.txt");
 
-	for (int i = 1; i <= m; i++)
+	for (int i = 0; i <= 14; i++)
 	{
-		for (int i = 1; i <= m; i++)
+		for (int j = 0; j <=14; j++)
 		{
-			boardFile >> cl[i].colour;
-			boardFile >> cl[i].multAmmount;
+			boardFile >> cl[i][j].colour;
+			boardFile >> cl[i][j].multAmmount;
 		}
 	}
 
 
-	for (int i = 1; i <= m; i++)
+	for (int i = 0; i <=14; i++)
 	{
-		for (int i = 1; i <= m; i++)
+		for (int j = 0; j <= 14; j++)
 		{
-			int col = cl[i].colour;
+			int col = cl[i][j].colour;
 			Color(col);
-			cout << cl[i].character<<' ';
+			cout << cl[i][j].character<<' ';
 		}
 		cout << endl;
 		Color(15);
 	}
 
-	/*for (int i = 1; i <= m ; i++)
+	/*for (int i = 0; i <= 14 ; i++)
 	{
-		for (int i = 1; i <= m*2; i++)
+		for (int j = 0; j <= 14; j++)
 		{
-			cout << cl[i].colour<<' ';
-			cout << cl[i].multAmmount<<"     ";
+			cout << cl[i][j].colour<<' ';
+			cout << cl[i][j].multAmmount<<"     ";
 		}
 		cout << endl;
 	}*/
 
-	while (File >> word)
+	/*while (File >> word)
 	{
 		if (check(word) == true)
 		{
 			List0.push_back(tuple<string, int>(word, value(word)));
 			nr++;
 		}
-	}
+	}*/
 
 	/*for (my_tuple::const_iterator i = List0.begin(); i != List0.end(); ++i) 
 	{
@@ -136,6 +135,8 @@ int main()
 	}*/
 
 	cout << nr;
+
+	File.close();
 
 	return 0;
 }

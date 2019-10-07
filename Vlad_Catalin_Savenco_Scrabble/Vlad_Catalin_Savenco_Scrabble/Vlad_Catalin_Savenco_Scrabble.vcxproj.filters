@@ -23,5 +23,8 @@
     <ClInclude Include="Vlad_Catalin_Savenco_Scrabble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CheckValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

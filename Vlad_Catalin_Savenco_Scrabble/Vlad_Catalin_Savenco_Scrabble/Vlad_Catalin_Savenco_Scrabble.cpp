@@ -119,20 +119,20 @@ int main()
 		cout << endl;
 	}*/
 
-	/*while (File >> word)
+	while (File >> word)
 	{
 		if (check(word) == true)
 		{
 			List0.push_back(tuple<string, int>(word, value(word)));
 			nr++;
 		}
-	}*/
+	}
 
-	/*for (my_tuple::const_iterator i = List0.begin(); i != List0.end(); ++i) 
+	for (my_tuple::const_iterator i = List0.begin(); i != List0.end(); ++i) 
 	{
 		cout << get<0>(*i) <<' ';
 		cout << get<1>(*i) << endl;
-	}*/
+	}
 
 	cout << nr;
 

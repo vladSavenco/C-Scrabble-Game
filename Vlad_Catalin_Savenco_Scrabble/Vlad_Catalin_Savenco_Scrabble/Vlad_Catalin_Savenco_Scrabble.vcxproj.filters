@@ -18,12 +18,18 @@
     <ClCompile Include="Vlad_Catalin_Savenco_Scrabble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vlad_Catalin_Savenco_Scrabble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CheckValue.h">
+    <ClInclude Include="Board.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

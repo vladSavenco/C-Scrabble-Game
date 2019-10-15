@@ -6,5 +6,6 @@ class WordList
 {
 	public:
 		WordList();
+		bool checkWord(std::string word);
 };
 #endif

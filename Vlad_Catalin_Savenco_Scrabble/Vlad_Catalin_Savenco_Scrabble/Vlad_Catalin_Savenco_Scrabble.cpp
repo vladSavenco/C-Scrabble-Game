@@ -1,6 +1,7 @@
 // Vlad_Catalin_Savenco_Scrabble
 
 #include <iostream>
+#include <string>
 #include "SBoard.h"
 #include "WordList.h"
 
@@ -14,6 +15,14 @@ int main()
 	SB.print();
 
 	WordList WL;
+
+	string word;
+	cin >> word;
+	if (WL.checkWord(word) == true)
+	{
+		cout << "Found IT!";
+	}
+	else cout << "Not A Legal Word!!";
 
 	//system("CLS");
 

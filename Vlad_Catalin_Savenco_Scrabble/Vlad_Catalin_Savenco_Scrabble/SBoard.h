@@ -8,7 +8,8 @@ class SBoard
 		SBoard();
 		void read();
 		void print();
-		void addWord(std::string word,int m,int n, std::string direction);
+		int addWord(std::string word,int m,int n, std::string direction);
+		int firstWord();
 };
 
 #endif

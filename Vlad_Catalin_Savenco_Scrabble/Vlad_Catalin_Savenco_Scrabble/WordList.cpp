@@ -114,6 +114,8 @@ int value(std::string word)
 	}
 }*/
 
+//binary search algorith that checks if the 
+
 bool binSearch(vector<line>lm,int l,int r,string word)
 {
 	if (r > l)

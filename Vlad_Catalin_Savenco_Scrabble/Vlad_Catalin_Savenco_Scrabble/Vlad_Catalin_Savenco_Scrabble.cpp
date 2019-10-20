@@ -9,6 +9,7 @@ using namespace std;
 
 int main() 
 {
+	int value;
 
 	SBoard SB;
 	SB.read();
@@ -16,15 +17,12 @@ int main()
 
 	WordList WL;
 
-	string word;
-	cin >> word;
-	if (WL.checkWord(word) == true)
-	{
-		cout << "Found IT!";
-	}
-	else cout << "Not A Legal Word!!";
+	system("CLS");
 
-	//system("CLS");
+	value=SB.firstWord();
+	SB.print();
+
+	cout << endl << value;
 
 	return 0;
 }

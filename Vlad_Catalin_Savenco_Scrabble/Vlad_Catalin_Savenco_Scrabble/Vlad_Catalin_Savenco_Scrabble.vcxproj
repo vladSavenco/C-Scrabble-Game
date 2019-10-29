@@ -151,12 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LetterList.cpp" />
     <ClCompile Include="SBoard.cpp" />
     <ClCompile Include="Vlad_Catalin_Savenco_Scrabble.cpp" />
     <ClCompile Include="WordList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="LetterList.h" />
     <ClInclude Include="SBoard.h" />
     <ClInclude Include="Vlad_Catalin_Savenco_Scrabble.h" />
     <ClInclude Include="WordList.h" />

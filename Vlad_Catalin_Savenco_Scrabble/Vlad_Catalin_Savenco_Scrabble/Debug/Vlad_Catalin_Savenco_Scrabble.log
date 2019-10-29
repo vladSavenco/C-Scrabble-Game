@@ -1,4 +1,4 @@
-﻿  SBoard.cpp
-D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(109,20): warning C4018: '>=': signed/unsigned mismatch
-D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(131,20): warning C4018: '>=': signed/unsigned mismatch
+﻿  LetterList.cpp
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(119,21): warning C4018: '<=': signed/unsigned mismatch
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(111): warning C4715: 'LetterList::checkPool': not all control paths return a value
   Vlad_Catalin_Savenco_Scrabble.vcxproj -> D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Debug\Vlad_Catalin_Savenco_Scrabble.exe

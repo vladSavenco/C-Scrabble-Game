@@ -5,8 +5,11 @@
 #include <string>
 #include <Windows.h>
 #include "wordList.h"
+#include "LetterList.h"
 
 using namespace std;
+
+LetterList LL;
 
 void Color(int color)
 {
@@ -24,7 +27,6 @@ struct cell cl[15][15];
 
 SBoard::SBoard()
 {
-
 }
 
 void SBoard::read()
@@ -101,12 +103,22 @@ int LValue(char l, int val)
 
 }
 
+string Pword(string word)
+{
+	while (LL.checkForLetters(word) != 0)
+	{
+		cout << "You do not have the letters to make this word, please choose another word:";
+		cin >> word;
+	}
+	return word;
+}
+
 int SBoard::addWord(std::string word, int m, int n, std::string direction)
 {
 	int nr = 0, wordValue=0, multiplier=1,ok=0;
 	if (direction == "right")
 	{
-		if (15 - (n + 1) >= word.size())
+		if (15 - (n) >= word.size())
 		{
 			for (int i = m; i <= 14 && ok == 0; i++)
 			{
@@ -116,6 +128,7 @@ int SBoard::addWord(std::string word, int m, int n, std::string direction)
 						ok = 1;
 					cl[i][j].character = word[nr];
 					wordValue = wordValue + LValue(cl[i][j].character, cl[i][j].colour);
+					LL.removeLetters(word[nr]);
 					nr++;
 					if (cl[i][j].colour == 12)
 						multiplier = multiplier * 3;
@@ -128,7 +141,7 @@ int SBoard::addWord(std::string word, int m, int n, std::string direction)
 
 	if (direction == "down")
 	{
-		if (15 - (m + 1) >= word.size())
+		if (15 - (m) >= word.size())
 		{
 			for (int j = m; j <= 14 && ok==0; j++)
 			{
@@ -138,6 +151,7 @@ int SBoard::addWord(std::string word, int m, int n, std::string direction)
 						ok = 1;
 					cl[i][j].character = word[nr];
 					wordValue = wordValue + LValue(cl[i][j].character, cl[i][j].colour);
+					LL.removeLetters(word[nr]);
 					nr++;
 					if (cl[i][j].colour == 12)
 						multiplier = multiplier * 3;
@@ -158,10 +172,33 @@ int SBoard::firstWord()
 	std::string word, direction;
 	cout << "write your word" << endl;
 	cin >> word;
+	if (LL.checkForLetters(word) != 0)
+	{
+		word=Pword(word);
+	}
 	cout << "down or right?" << endl;
 	cin >> direction;
 
 	value=addWord(word, 7, 7, direction);
+
+	return value;
+}
+
+int SBoard::addWord()
+{
+	int value = 0,x,y;
+
+	std::string word, direction;
+	cout << "write your word" << endl;
+	cin >> word;
+	cout << "down or right?" << endl;
+	cin >> direction;
+	cout << "x axys" << endl;
+	cin >> x;
+	cout << "y axis" << endl;
+	cin >> y;
+
+	value = addWord(word, x, y, direction);
 
 	return value;
 }

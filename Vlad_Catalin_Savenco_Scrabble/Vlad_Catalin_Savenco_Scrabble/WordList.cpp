@@ -168,7 +168,7 @@ WordList::WordList()
 		cout << ln[i].value << endl;
 	}*/
 
-	cout << nr;
+	cout << nr<<endl;
 
 	File.close();
 }

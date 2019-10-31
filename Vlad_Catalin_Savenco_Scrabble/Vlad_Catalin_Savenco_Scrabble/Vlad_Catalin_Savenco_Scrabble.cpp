@@ -19,14 +19,14 @@ int main()
 	WordList WL;
 	LetterList LL;
 
-	//system("CLS");
-
 	LL.readLetters();
 	LL.checkLetters();
 	LL.printLetters();
 
-
 	value = SB.firstWord();
+
+	system("CLS");
+
 	SB.print();
 
 	pValue = pValue + value;
@@ -39,8 +39,10 @@ int main()
 		LL.checkLetters();
 		LL.printLetters();
 
+		value = SB.pAddWord();
 
-		value = SB.addWord();
+		system("CLS");
+
 		SB.print();
 
 		pValue = pValue + value;

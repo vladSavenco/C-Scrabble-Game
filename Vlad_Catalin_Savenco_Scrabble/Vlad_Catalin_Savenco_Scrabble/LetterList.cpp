@@ -78,13 +78,28 @@ void LetterList::printLetters()
 
 void LetterList::removeLetters(char Let)
 {
+	int ok = 0;
+
 		for (int j = 0; j <= 6; j++)
 		{
 			if (pLt[j].letter ==Let)
 			{
 				pLt[j].letter = '0';
+				ok = 1;
 			}
 		}
+
+		if (ok == 0)
+		{
+			for (int j = 0; j <= 6; j++)
+			{
+				if (pLt[j].letter == '#')
+				{
+					pLt[j].letter = '0';
+				}
+			}
+		}
+
 }
 
 void LetterList::readLetters()
@@ -112,11 +127,11 @@ int LetterList::checkPool()
 
 int LetterList::checkForLetters(string word)
 {
-	int ok = 0;
+	/*int ok = 0,j,i;
 
-	for (int j = 0; j <= 6; j++)
+	for (j = 0; j <= 6; j++)
 	{
-		for (int i = 0; i <= word.length() - 1; i++)
+		for (i = 0; i <= word.size() - 1; i++)
 		{
 			if (word[i] == pLt[j].letter)
 			{
@@ -132,7 +147,24 @@ int LetterList::checkForLetters(string word)
 	else
 	{
 		return 1;
-	}
+	}*/
+
+	if (word.length() == 0)
+		return 0;
+	for (unsigned int i = 0; i < 7 - (word.length() - 1); ++i)
+		if (pLt[i].letter == word[0])
+		{
+			bool matches = true;
+			for (unsigned int j = 1; j < word.length(); ++j)
+				if (pLt[i + j].letter != word[j])
+				{
+					matches = false;
+					break;
+				}
+			if (matches)
+				return 0;
+		}
+
 }
 
 LetterList::LetterList()

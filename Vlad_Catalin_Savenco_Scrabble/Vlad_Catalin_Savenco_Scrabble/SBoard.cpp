@@ -161,6 +161,13 @@ int SBoard::addWord(std::string word, int m, int n, std::string direction)
 			}
 		}
 	}
+
+	if (direction != "down" && direction != "right")
+	{
+		cout << "please insert a correct direction:"; cin >> direction;
+		addWord(word, m, n, direction);
+	}
+
 	wordValue = wordValue * multiplier;
 	return wordValue;
 }
@@ -184,7 +191,7 @@ int SBoard::firstWord()
 	return value;
 }
 
-int SBoard::addWord()
+int SBoard::pAddWord()
 {
 	int value = 0,x,y;
 

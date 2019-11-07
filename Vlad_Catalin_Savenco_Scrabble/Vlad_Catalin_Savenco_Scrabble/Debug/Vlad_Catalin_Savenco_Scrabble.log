@@ -1,2 +1,5 @@
-﻿  RunGame.cpp
+﻿  SBoard.cpp
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(21,19): warning C4309: 'initializing': truncation of constant value
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(234,16): warning C4018: '>=': signed/unsigned mismatch
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(257,16): warning C4018: '>=': signed/unsigned mismatch
   Vlad_Catalin_Savenco_Scrabble.vcxproj -> D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Debug\Vlad_Catalin_Savenco_Scrabble.exe

@@ -116,55 +116,58 @@ void LetterList::readLetters()
 
 int LetterList::checkPool()
 {
+	int ok = 0;
+
 	for (int i = 0; i <= 26; i++)
 	{
-		int ok = 0;
 		if (Lt[i].number > 0)
 			ok = 1;
-		return ok;
 	}
+	return ok;
 }
 
 int LetterList::checkForLetters(string word)
 {
 	struct pLetters pLs[7];
 
-	int ok,let=0;
+	int ok,let=0,i,j;
 
-	for (int i = 0; i <= 6; i++)
+	for (i = 0; i <= 6; i++)
 	{
 		pLs[i].letter = pLt[i].letter;
 	}
 
-	for (int i = 0; i <= word.size() - 1; i++)
+	for (i = 0; i <= word.size() - 1; i++)
 	{
-		ok = 1;
-		for (int j = 0; j <= 6 && ok==0; j++)
+		ok = 0;
+		for (j = 0; j <= 6 && ok==0; j++)
 		{
 			if (word[i] == pLs[j].letter)
 			{
 				ok = 1;
 				pLs[j].letter = '0';
+				cout << "removing:" << word[i] << endl;
 				word[i] = '0';
 			}
 		}
 	}
 
-	for (int i = 0; i <= word.size() - 1; i++)
+	for (i = 0; i <= word.size() - 1; i++)
 	{
-		ok = 1;
-		for (int j = 0; j <= 6 && ok == 0; j++)
+		ok = 0;
+		for (j = 0; j <= 6 && ok == 0; j++)
 		{
 			if (word[i] != '0' && pLs[j].letter == '#')
 			{
 				ok = 1;
-				pLs[j].letter = 0;
+				pLs[j].letter = '0';
+				cout << "removing:" << word[i] << endl;
 				word[i] = '0';
 			}
 		}
 	}
 
-	for (int i = 0; i <= word.size() - 1; i++)
+	for (i = 0; i <= word.size() - 1; i++)
 	{
 		if (word[i] != '0')
 			let = 1;

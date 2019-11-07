@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include "RunGame.h"
 #include "SBoard.h"
 #include "WordList.h"
@@ -50,4 +50,4 @@ void RunGame::PlayerFirstMove()
 	pValue = pValue + value;
 
 	cout << endl << "Your score:" << pValue << endl;
-}
+}*/

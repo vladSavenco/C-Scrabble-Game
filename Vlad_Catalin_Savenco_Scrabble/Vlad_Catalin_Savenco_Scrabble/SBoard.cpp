@@ -25,11 +25,11 @@ struct cell
 
 struct cell cl[15][15];
 
-//Function that asks the player to input the direction the word should be added towards.
-
 SBoard::SBoard()
 {
 }
+
+//Function that asks the player to input either down or right and checks if the player gave the correct value.
 
 string rightDown()
 {
@@ -148,33 +148,24 @@ int checkProximity(string word, string direction, int m, int n)
 	int len = word.length(),ok=0;
 	if (direction == "right")
 	{
-		for (int i = m; i <= m; i++)
-		{
-			for (int j = n; j <= len; j++)
+			for (int j = n; j <= n+len; j++)
 			{
-				if (cl[i][j].character != 254)
+				if (cl[m][j].character != 254 )
 				{
 					ok = 1;
 					cout << "found right on top" << endl;
 				}
-				else
-					if (cl[i - 1][j].character != 254)
+				if (cl[m - 1][j].character != 254)
 					{
 						ok = 1;
 						cout << "found right above" << endl;
 					}
-					else
-						if (cl[i + 1][j].character != 254)
+				if (cl[m + 1][j].character != 254)
 						{
 							ok = 1;
 							cout << "found right under" << endl;
 						}
-				else
-				{
-					cout << "nothing found" << endl;
-				}
 			}
-		}
 		if (cl[m][n - 1].character != 254 || cl[m][n + len-1].character != 254)
 		{
 			ok = 1;
@@ -185,7 +176,7 @@ int checkProximity(string word, string direction, int m, int n)
 	{
 		for (int i = n; i <= n; i++)
 		{
-			for (int j = m; j <= len; j++)
+			for (int j = m; j <= m+len; j++)
 			{
 				if (cl[j][i].character != 254 || cl[j - 1][i].character != 254 || cl[j + 1][i].character != 254)
 				{
@@ -284,12 +275,6 @@ int SBoard::addWord(string word, int m, int n, string direction)
 		}
 	}
 
-	if (direction != "down" && direction != "right")
-	{
-		cout << "please insert a correct direction:"; cin >> direction;
-		addWord(word, m, n, direction);
-	}
-
 	wordValue = wordValue * multiplier;
 	return wordValue;
 }
@@ -302,9 +287,7 @@ int SBoard::firstWord()
 
 	std::string word, direction;
 
-	//word = Pword();
-
-	cin >> word;
+	word = Pword();
 
 	direction = rightDown();
 
@@ -317,11 +300,12 @@ int SBoard::firstWord()
 
 int SBoard::pAddWord()
 {
-	int value = 0,x=NULL,y=NULL;
+	int value = 0;
 
 	std::string word, direction;
-	cout << "write your word" << endl;
-	cin >> word;
+
+	word = Pword();
+
 	direction = rightDown();
 
 	value=inputCoordinates(word, direction);

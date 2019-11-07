@@ -13,7 +13,7 @@ using namespace std;
 
 struct letters
 {
-	char letter;
+	char letter='0';
 	int number=0;
 };
 
@@ -127,43 +127,57 @@ int LetterList::checkPool()
 
 int LetterList::checkForLetters(string word)
 {
-	/*int ok = 0,j,i;
+	struct pLetters pLs[7];
 
-	for (j = 0; j <= 6; j++)
+	int ok,let=0;
+
+	for (int i = 0; i <= 6; i++)
 	{
-		for (i = 0; i <= word.size() - 1; i++)
+		pLs[i].letter = pLt[i].letter;
+	}
+
+	for (int i = 0; i <= word.size() - 1; i++)
+	{
+		ok = 1;
+		for (int j = 0; j <= 6 && ok==0; j++)
 		{
-			if (word[i] == pLt[j].letter)
+			if (word[i] == pLs[j].letter)
 			{
-				ok++;
-				j++;
+				ok = 1;
+				pLs[j].letter = '0';
+				word[i] = '0';
 			}
 		}
 	}
-	if (ok == word.length())
+
+	for (int i = 0; i <= word.size() - 1; i++)
 	{
-		return 0;
+		ok = 1;
+		for (int j = 0; j <= 6 && ok == 0; j++)
+		{
+			if (word[i] != '0' && pLs[j].letter == '#')
+			{
+				ok = 1;
+				pLs[j].letter = 0;
+				word[i] = '0';
+			}
+		}
+	}
+
+	for (int i = 0; i <= word.size() - 1; i++)
+	{
+		if (word[i] != '0')
+			let = 1;
+	}
+
+	if (let == 0)
+	{
+		return true;
 	}
 	else
 	{
-		return 1;
-	}*/
-
-	if (word.length() == 0)
-		return 0;
-	for (unsigned int i = 0; i < 7 - (word.length() - 1); ++i)
-		if (pLt[i].letter == word[0])
-		{
-			bool matches = true;
-			for (unsigned int j = 1; j < word.length(); ++j)
-				if (pLt[i + j].letter != word[j])
-				{
-					matches = false;
-					break;
-				}
-			if (matches)
-				return 0;
-		}
+		return false;
+	}
 
 }
 

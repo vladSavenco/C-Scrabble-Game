@@ -41,8 +41,6 @@ int main()
 
 		value = SB.pAddWord();
 
-		system("CLS");
-
 		SB.print();
 
 		pValue = pValue + value;

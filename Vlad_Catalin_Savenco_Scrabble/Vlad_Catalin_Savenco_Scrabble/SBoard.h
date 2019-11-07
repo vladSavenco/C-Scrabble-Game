@@ -11,6 +11,7 @@ class SBoard
 		int addWord(std::string word,int m,int n, std::string direction);
 		int firstWord();
 		int pAddWord();
+		int inputCoordinates(std::string word, std::string direction);
 };
 
 #endif

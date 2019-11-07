@@ -1,6 +1,2 @@
-﻿  SBoard.cpp
-D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(121,16): warning C4018: '>=': signed/unsigned mismatch
-  Vlad_Catalin_Savenco_Scrabble.cpp
-  Generating Code...
-D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(144,16): warning C4018: '>=': signed/unsigned mismatch
+﻿  RunGame.cpp
   Vlad_Catalin_Savenco_Scrabble.vcxproj -> D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Debug\Vlad_Catalin_Savenco_Scrabble.exe

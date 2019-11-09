@@ -145,54 +145,40 @@ string Pword()
 
 int checkProximity(string word, string direction, int m, int n)
 {
-	int len = word.length(),ok=0;
+	int len = word.size(),ok=0;
+	
 	if (direction == "right")
 	{
-			for (int j = n; j <= n+len; j++)
+		for (int j = n; j <= n + len - 1; j++)
+		{
+			if (cl[m][j].character>96 && cl[m][j].character<123)
 			{
-				if (cl[m][j].character != 254 )
-				{
-					ok = 1;
-					cout << "found right on top" << endl;
-				}
-				if (cl[m - 1][j].character != 254)
-					{
-						ok = 1;
-						cout << "found right above" << endl;
-					}
-				if (cl[m + 1][j].character != 254)
-						{
-							ok = 1;
-							cout << "found right under" << endl;
-						}
+				ok = 1;
+				cout << "found it on";
 			}
-		if (cl[m][n - 1].character != 254 || cl[m][n + len-1].character != 254)
-		{
-			ok = 1;
-			cout << "found right 2" << endl;
-		}
-	}
-	if (direction == "down")
-	{
-		for (int i = n; i <= n; i++)
-		{
-			for (int j = m; j <= m+len; j++)
+
+			if (cl[m-1][j].character > 96 && cl[m-1][j].character < 123 && m!=0)
 			{
-				if (cl[j][i].character != 254 || cl[j - 1][i].character != 254 || cl[j + 1][i].character != 254)
-				{
-					ok = 1;
-					cout << "found left 1" << endl;
-				}
-				else
-				{
-					cout << "nothing found" << endl;
-				}
+				ok = 1;
+				cout << "found it above";
+			}
+
+			if (cl[m + 1][j].character > 96 && cl[m + 1][j].character < 123 && m!=14)
+			{
+				ok = 1;
+				cout << "found it under";
 			}
 		}
-		if (cl[m-1][n].character != 254 || cl[m + len-1][n].character != 254)
+
+		if (cl[m][n - 1].character>96 && cl[m][n - 1].character<123)
 		{
 			ok = 1;
-			cout << "found left 2" << endl;
+			cout << "found it before or after spot";
+		}
+		if (cl[m][n+len].character > 96 && cl[m][n+len].character < 123 && n!=0 && n+len-1!=14)
+		{
+			ok = 1;
+			cout << "found it before or after spot";
 		}
 	}
 
@@ -210,16 +196,16 @@ int SBoard::inputCoordinates(string word, string direction)
 	cout << "Please input the y axis:" << endl;
 	cin >> y;
 
-	if (checkProximity(word, direction, x, y) != 1)
+	while (checkProximity(word, direction, x, y) == 0)
 	{
 		cout << "Please input other coordinates:" << endl;
+		cout << "Please input the x axys:" << endl;
+		cin >> x;
+		cout << "Please input the y axis:" << endl;
+		cin >> y;
+	}
 
-		inputCoordinates(word, direction);
-	}
-	else
-	{
-		value = addWord(word, x, y, direction);
-	}
+	value = addWord(word, x, y, direction);
 
 	return value;
 }

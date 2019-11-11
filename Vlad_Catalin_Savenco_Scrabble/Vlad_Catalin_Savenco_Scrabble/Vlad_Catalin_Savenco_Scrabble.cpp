@@ -17,6 +17,7 @@ int main()
 	SB.print();
 
 	WordList WL;
+
 	LetterList LL;
 
 	LL.readLetters();

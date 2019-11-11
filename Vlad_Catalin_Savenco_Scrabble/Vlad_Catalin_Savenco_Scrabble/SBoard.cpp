@@ -11,6 +11,8 @@ using namespace std;
 
 LetterList LL;
 
+//Function that takes a number as an input and changes the colour of the output text.
+
 void Color(int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
@@ -170,12 +172,48 @@ int checkProximity(string word, string direction, int m, int n)
 			}
 		}
 
-		if (cl[m][n - 1].character>96 && cl[m][n - 1].character<123)
+		if (cl[m][n - 1].character>96 && cl[m][n - 1].character<123 && n != 0)
 		{
 			ok = 1;
 			cout << "found it before or after spot";
 		}
-		if (cl[m][n+len].character > 96 && cl[m][n+len].character < 123 && n!=0 && n+len-1!=14)
+		if (cl[m][n+len].character > 96 && cl[m][n+len].character < 123 && n+len-1!=14)
+		{
+			ok = 1;
+			cout << "found it before or after spot";
+		}
+	}
+
+
+	if (direction == "down")
+	{
+		for (int j = m; j <= m + len - 1; j++)
+		{
+			if (cl[j][n].character > 96 && cl[j][n].character < 123)
+			{
+				ok = 1;
+				cout << "found it on";
+			}
+
+			if (cl[j][n-1].character > 96 && cl[j][n-1].character < 123 && n != 0)
+			{
+				ok = 1;
+				cout << "found it on the left";
+			}
+
+			if (cl[j][n+1].character > 96 && cl[j][n+1].character < 123 && n != 14)
+			{
+				ok = 1;
+				cout << "found it on the right";
+			}
+		}
+
+		if (cl[n-1][m].character > 96 && cl[n-1][m].character < 123 && m != 0)
+		{
+			ok = 1;
+			cout << "found it before or after spot";
+		}
+		if (cl[n+len][m].character > 96 && cl[n+len][m].character < 123 && m + len - 1 != 14)
 		{
 			ok = 1;
 			cout << "found it before or after spot";
@@ -184,6 +222,86 @@ int checkProximity(string word, string direction, int m, int n)
 
 	return ok;
 }
+
+//Function that adds a given word starting at given cooordinates, towards given direction.
+
+void SBoard::addWord(string word, int m, int n, string direction)
+{
+	int nr = 0, ok = 0;
+	if (direction == "right")
+	{
+		for (int i = m; i <= 14 && ok == 0; i++)
+		{
+			for (int j = n; j <= 14 && ok == 0; j++)
+			{
+				if (nr == word.size() - 1)
+					ok = 1;
+				cl[i][j].character = word[nr];
+				LL.removeLetters(word[nr]);
+				nr++;
+			}
+		}
+	}
+
+	if (direction == "down")
+	{
+		for (int i = n; i <= 14 && ok == 0; i++)
+		{
+			for (int j = m; j <= 14 && ok == 0; j++)
+			{
+				if (nr == word.size() - 1)
+					ok = 1;
+				cl[j][i].character = word[nr];
+				LL.removeLetters(word[nr]);
+				nr++;
+			}
+		}
+	}
+}
+
+int checkValue(int m, int n, string word, string direction)
+{
+	int nr = 0, wordValue = 0, multiplier = 1, ok = 0;
+	if (direction == "right")
+	{
+		for (int i = m; i <= 14 && ok == 0; i++)
+		{
+			for (int j = n; j <= 14 && ok == 0; j++)
+			{
+				if (nr == word.size() - 1)
+					ok = 1;
+				wordValue = wordValue + LValue(cl[i][j].character, cl[i][j].colour);
+				nr++;
+				if (cl[i][j].colour == 12)
+					multiplier = multiplier * 3;
+				if (cl[i][j].colour == 13)
+					multiplier = multiplier * 2;
+			}
+		}
+	}
+
+	if (direction == "down")
+	{
+		for (int i = n; i <= 14 && ok == 0; i++)
+		{
+			for (int j = m; j <= 14 && ok == 0; j++)
+			{
+				if (nr == word.size() - 1)
+					ok = 1;
+				wordValue = wordValue + LValue(cl[j][i].character, cl[j][i].colour);
+				nr++;
+				if (cl[j][i].colour == 12)
+					multiplier = multiplier * 3;
+				if (cl[j][i].colour == 13)
+					multiplier = multiplier * 2;
+			}
+		}
+	}
+
+	wordValue = wordValue * multiplier;
+	return wordValue;
+}
+
 
 //Function that asks player to input coordinates, then checks if there can be placed a word there,
 
@@ -205,64 +323,12 @@ int SBoard::inputCoordinates(string word, string direction)
 		cin >> y;
 	}
 
-	value = addWord(word, x, y, direction);
+	addWord(word, x, y, direction);
+
+	value = checkValue(x, y, word, direction);
+
 
 	return value;
-}
-
-//Function that adds a given word starting at given cooordinates, towards given direction.
-
-int SBoard::addWord(string word, int m, int n, string direction)
-{
-	int nr = 0, wordValue=0, multiplier=1,ok=0;
-	if (direction == "right")
-	{
-		if (15 - (n) >= word.size())
-		{
-			for (int i = m; i <= 14 && ok == 0; i++)
-			{
-				for (int j = n; j <= 14 && ok==0; j++)
-				{
-					if (nr == word.size()-1)
-						ok = 1;
-					cl[i][j].character = word[nr];
-					wordValue = wordValue + LValue(cl[i][j].character, cl[i][j].colour);
-					LL.removeLetters(word[nr]);
-					nr++;
-					if (cl[i][j].colour == 12)
-						multiplier = multiplier * 3;
-					if (cl[i][j].colour == 13)
-						multiplier = multiplier * 2;
-				}
-			}
-		}
-	}
-
-	if (direction == "down")
-	{
-		if (15 - (m) >= word.size())
-		{
-			for (int i = n; i <= 14 && ok == 0; i++)
-			{
-				for (int j = m; j <= 14 && ok == 0; j++)
-				{
-					if (nr == word.size()-1)
-						ok = 1;
-					cl[j][i].character = word[nr];
-					wordValue = wordValue + LValue(cl[j][i].character, cl[j][i].colour);
-					LL.removeLetters(word[nr]);
-					nr++;
-					if (cl[j][i].colour == 12)
-						multiplier = multiplier * 3;
-					if (cl[j][i].colour == 13)
-						multiplier = multiplier * 2;
-				}
-			}
-		}
-	}
-
-	wordValue = wordValue * multiplier;
-	return wordValue;
 }
 
 //Function that only asks for a word and direction from the player then places the word at the middle coordinates.
@@ -277,7 +343,9 @@ int SBoard::firstWord()
 
 	direction = rightDown();
 
-	value=addWord(word, 7, 7, direction);
+	addWord(word, 7, 7, direction);
+
+	value = checkValue(7, 7, word, direction);
 
 	return value;
 }

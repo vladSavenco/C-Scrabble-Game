@@ -71,46 +71,70 @@ int value(std::string word)
 	return value;
 }
 
-//sorting algorithm ?.
+//sorting algorithm.
 
-/*void quickSort(vector<line>lm, int left, int right)
+/*void merge(int l, int m, int r)
 {
-	if (left < right)
+	int i, j, k,size,halfSize;
+	int n1 = m - l + 1;
+	int n2 = r - m;
+
+	// creating temporarry arrays.
+
+	size = ln.size();
+	halfSize = size/2;
+
+	vector<line> L(ln.begin(), ln.begin() + halfSize);
+	vector<line> R(ln.begin() + halfSize, ln.end());
+
+	i = 0;
+	j = 0;
+	k = 0;
+
+	while (i < n1 && j < n2)
 	{
-		int m = (left + right) / 2;
-
-		string aux1 = lm[left].word;
-		int aux2 = lm[left].value;
-
-		lm[left].word = lm[m].word;
-		lm[left].value = lm[m].value;
-
-		lm[m].word = aux1;
-		lm[m].value = aux2;
-
-		int i = left, j = right, d = 0;
-
-		while (i < j)
+		if (L[i].word <= R[j].word)
 		{
-			if (lm[i].word > lm[j].word)
-			{
-				aux1 = lm[i].word;
-				aux2 = lm[i].value;
-
-				lm[i].word = lm[j].word;
-				lm[i].value = lm[j].value;
-
-				lm[j].word = aux1;
-				lm[j].value = aux2;
-
-				d = 1 - d;
-			}
-			i += d;
-			j -= 1 - d;
-
+			ln[k].word = L[i].word;
+			ln[k].value = L[i].value;
+			i++;
 		}
-		quickSort(lm, left, i - 1);
-		quickSort(lm, i + 1, right);
+		else
+		{
+			ln[k].word = R[j].word;
+			ln[k].value = R[j].value;
+			j++;
+		}
+		k++;
+	}
+
+	while (i < n1)
+	{
+		ln[k].word = L[i].word;
+		ln[k].value = L[i].value;
+		i++;
+		k++;
+	}
+
+	while (j < n2)
+	{
+		ln[k].word = R[j].word;
+		ln[k].value = R[j].value;
+		j++;
+		k++;
+	}
+}
+
+void WordList::mergeSort(int l, int r)
+{
+	if (l < r)
+	{
+		int m = l + (r - 1) / 2;
+
+		mergeSort(l, m);
+		mergeSort(m + l, r);
+
+		merge(l, m, r);
 	}
 }*/
 
@@ -161,6 +185,8 @@ WordList::WordList()
 			nr++;
 		}
 	}
+
+	//mergeSort(0,ln.size()-1);
 
 	/*for (int i=0;i<=ln.size()-1;i++)
 	{

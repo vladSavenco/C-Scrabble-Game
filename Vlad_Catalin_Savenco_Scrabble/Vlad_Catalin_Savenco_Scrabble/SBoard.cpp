@@ -129,6 +129,102 @@ int LValue(char l, int val)
 
 }
 
+int checkValue(int m, int n, string word, string direction)
+{
+	int nr = 0, wordValue = 0, multiplier = 1, ok = 0;
+	if (direction == "right")
+	{
+		for (int i = m; i <= 14 && ok == 0; i++)
+		{
+			for (int j = n; j <= 14 && ok == 0; j++)
+			{
+				if (nr == word.size() - 1)
+					ok = 1;
+				wordValue = wordValue + LValue(cl[i][j].character, cl[i][j].colour);
+				nr++;
+				if (cl[i][j].colour == 12)
+					multiplier = multiplier * 3;
+				if (cl[i][j].colour == 13)
+					multiplier = multiplier * 2;
+			}
+		}
+	}
+
+	if (direction == "down")
+	{
+		for (int i = n; i <= 14 && ok == 0; i++)
+		{
+			for (int j = m; j <= 14 && ok == 0; j++)
+			{
+				if (nr == word.size() - 1)
+					ok = 1;
+				wordValue = wordValue + LValue(cl[j][i].character, cl[j][i].colour);
+				nr++;
+				if (cl[j][i].colour == 12)
+					multiplier = multiplier * 3;
+				if (cl[j][i].colour == 13)
+					multiplier = multiplier * 2;
+			}
+		}
+	}
+
+	wordValue = wordValue * multiplier;
+	return wordValue;
+}
+
+int findWords(int x,int y, string direction)
+{
+	string word;
+	int nr=0,val=0;
+
+	if (direction == "right")
+	{
+		int i = x-1;
+
+		while (cl[i][y].character > 96 && cl[i][y].character < 123 && i!=0)
+		{
+			i = i - 1;
+		}
+		x = i+1;
+		for (i; i <= 15; i++)
+		{
+			if (cl[i][y].character > 96 && cl[i][y].character < 123 && i != 0)
+			{
+				word = cl[i][y].character;
+				nr++;
+			}
+		}
+
+		//val=checkValue(x,y,word,direction);
+
+	}
+
+	if (direction == "down")
+	{
+		int i = y-1;
+
+		while (cl[x][i].character > 96 && cl[x][i].character < 123 && i != 0)
+		{
+			i = i - 1;
+		}
+		y = i+1;
+		for (i; i <= 15; i++)
+		{
+			if (cl[x][i].character > 96 && cl[x][i].character < 123 && i != 0)
+			{
+				word = cl[x][i].character;
+				nr++;
+			}
+		}
+		//val = checkValue(x, y, word, direction);
+	}
+
+	cout << endl<<"foud word" << word << endl;
+
+	return val;
+
+}
+
 string Pword()
 {
 	string word;
@@ -225,9 +321,9 @@ int checkProximity(string word, string direction, int m, int n)
 
 //Function that adds a given word starting at given cooordinates, towards given direction.
 
-void SBoard::addWord(string word, int m, int n, string direction)
+int SBoard::addWord(string word, int m, int n, string direction)
 {
-	int nr = 0, ok = 0;
+	int nr = 0, ok = 0,val=0;
 	if (direction == "right")
 	{
 		for (int i = m; i <= 14 && ok == 0; i++)
@@ -238,6 +334,7 @@ void SBoard::addWord(string word, int m, int n, string direction)
 					ok = 1;
 				cl[i][j].character = word[nr];
 				LL.removeLetters(word[nr]);
+				val = findWords(i, j, direction);
 				nr++;
 			}
 		}
@@ -253,61 +350,20 @@ void SBoard::addWord(string word, int m, int n, string direction)
 					ok = 1;
 				cl[j][i].character = word[nr];
 				LL.removeLetters(word[nr]);
+				val = findWords(i, j, direction);
 				nr++;
 			}
 		}
 	}
+
+	return val;
 }
-
-int checkValue(int m, int n, string word, string direction)
-{
-	int nr = 0, wordValue = 0, multiplier = 1, ok = 0;
-	if (direction == "right")
-	{
-		for (int i = m; i <= 14 && ok == 0; i++)
-		{
-			for (int j = n; j <= 14 && ok == 0; j++)
-			{
-				if (nr == word.size() - 1)
-					ok = 1;
-				wordValue = wordValue + LValue(cl[i][j].character, cl[i][j].colour);
-				nr++;
-				if (cl[i][j].colour == 12)
-					multiplier = multiplier * 3;
-				if (cl[i][j].colour == 13)
-					multiplier = multiplier * 2;
-			}
-		}
-	}
-
-	if (direction == "down")
-	{
-		for (int i = n; i <= 14 && ok == 0; i++)
-		{
-			for (int j = m; j <= 14 && ok == 0; j++)
-			{
-				if (nr == word.size() - 1)
-					ok = 1;
-				wordValue = wordValue + LValue(cl[j][i].character, cl[j][i].colour);
-				nr++;
-				if (cl[j][i].colour == 12)
-					multiplier = multiplier * 3;
-				if (cl[j][i].colour == 13)
-					multiplier = multiplier * 2;
-			}
-		}
-	}
-
-	wordValue = wordValue * multiplier;
-	return wordValue;
-}
-
 
 //Function that asks player to input coordinates, then checks if there can be placed a word there,
 
 int SBoard::inputCoordinates(string word, string direction)
 {
-	int x, y, value = 0;
+	int x, y, value = 0,newVal=0;
 
 	cout << "Please input the x axys:" << endl;
 	cin >> x;
@@ -323,10 +379,11 @@ int SBoard::inputCoordinates(string word, string direction)
 		cin >> y;
 	}
 
-	addWord(word, x, y, direction);
+	newVal=addWord(word, x, y, direction);
 
 	value = checkValue(x, y, word, direction);
 
+	value = value + newVal;
 
 	return value;
 }

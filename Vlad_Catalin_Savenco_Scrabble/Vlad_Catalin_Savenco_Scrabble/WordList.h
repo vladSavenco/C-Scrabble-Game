@@ -7,6 +7,5 @@ class WordList
 	public:
 		WordList();
 		bool checkWord(std::string word);
-		//void mergeSort(int l, int r);
 };
 #endif

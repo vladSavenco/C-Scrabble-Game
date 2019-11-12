@@ -14,6 +14,5 @@ class LetterList
 		void readLetters();
 		int checkPool();
 		int checkForLetters(string word);
-		void pLtAddLet(char let);
 };
 #endif

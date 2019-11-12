@@ -125,14 +125,14 @@ int value(std::string word)
 	}
 }
 
-void WordList::mergeSort(int l, int r)
+void mergeSort(int l, int r)
 {
 	if (l < r)
 	{
 		int m = l + (r - 1) / 2;
 
 		mergeSort(l, m);
-		mergeSort(m + l, r);
+		mergeSort(m + 1, r);
 
 		merge(l, m, r);
 	}

@@ -73,7 +73,7 @@ int value(std::string word)
 
 //sorting algorithm.
 
-/*void merge(int l, int m, int r)
+void merge(int l, int m, int r)
 {
 	int i, j, k,size,halfSize;
 	int n1 = m - l + 1;
@@ -129,14 +129,17 @@ void mergeSort(int l, int r)
 {
 	if (l < r)
 	{
+
 		int m = l + (r - 1) / 2;
+
+		cout << m << " " << r<<endl;
 
 		mergeSort(l, m);
 		mergeSort(m + 1, r);
 
 		merge(l, m, r);
 	}
-}*/
+}
 
 //binary search algorith that checks if the 
 
@@ -186,7 +189,7 @@ WordList::WordList()
 		}
 	}
 
-	//mergeSort(0,ln.size()-1);
+	mergeSort(0,ln.size()-1);
 
 	/*for (int i=0;i<=ln.size()-1;i++)
 	{

@@ -129,6 +129,8 @@ int LValue(char l, int val)
 
 }
 
+//Function that calculates the value of a word using LValue and multiplying it with the multiplyers.
+
 int checkValue(int m, int n, string word, string direction)
 {
 	int nr = 0, wordValue = 0, multiplier = 1, ok = 0;
@@ -172,6 +174,8 @@ int checkValue(int m, int n, string word, string direction)
 	return wordValue;
 }
 
+//Function that looks at every letter of the word that the player added and checks if they form another word.
+
 int findWords(int x,int y, string direction)
 {
 	string word;
@@ -179,51 +183,38 @@ int findWords(int x,int y, string direction)
 
 	if (direction == "right")
 	{
-		int i = x-1;
+		int i = x;
 
-		while (cl[i][y].character > 96 && cl[i][y].character < 123 && i!=0)
+		while (cl[i][y].character > 96 && cl[i][y].character < 123 && i>=0)
 		{
 			i = i - 1;
 		}
-		x = i+1;
-		for (i; i <= 15; i++)
+		i = i + 1;
+		x = i;
+
+		for (i; i <= 14; i++)
 		{
-			if (cl[i][y].character > 96 && cl[i][y].character < 123 && i != 0)
+			if (cl[i][y].character > 96 && cl[i][y].character < 123 && i <=14)
 			{
-				word = cl[i][y].character;
+				word.push_back(cl[i][y].character);
 				nr++;
 			}
 		}
 
-		//val=checkValue(x,y,word,direction);
+		val=checkValue(x,y,word,direction);
 
 	}
 
-	if (direction == "down")
+	if (word.size()>1)
 	{
-		int i = y-1;
-
-		while (cl[x][i].character > 96 && cl[x][i].character < 123 && i != 0)
-		{
-			i = i - 1;
-		}
-		y = i+1;
-		for (i; i <= 15; i++)
-		{
-			if (cl[x][i].character > 96 && cl[x][i].character < 123 && i != 0)
-			{
-				word = cl[x][i].character;
-				nr++;
-			}
-		}
-		//val = checkValue(x, y, word, direction);
+		cout << endl << "foud word" << word << " Value="<<val<<" pozition:"<<x<<" "<<y<<endl;
 	}
-
-	cout << endl<<"foud word" << word << endl;
 
 	return val;
 
 }
+
+//Function that checks if the player has all the letters in hand to form the word.
 
 string Pword()
 {
@@ -235,11 +226,19 @@ string Pword()
 
 	while (LL.checkForLetters(word) == false)
 	{
+		if (word == "~reset~")
+		{
+			LL.resetHand();
+			LL.printLetters();
+		}
+
 		cout << "You do not have the letters to make this word, please choose another word:";
 		cin >> word;
 	}
 	return word;
 }
+
+//Function that checks if the words added after the first one are touching any other word.
 
 int checkProximity(string word, string direction, int m, int n)
 {

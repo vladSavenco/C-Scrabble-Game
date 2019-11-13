@@ -145,7 +145,7 @@ int LetterList::checkForLetters(string word)
 			{
 				ok = 1;
 				pLs[j].letter = '0';
-				cout << "removing:" << word[i] << endl;
+				//cout << "removing:" << word[i] << endl;
 				word[i] = '0';
 			}
 		}
@@ -160,7 +160,7 @@ int LetterList::checkForLetters(string word)
 			{
 				ok = 1;
 				pLs[j].letter = '0';
-				cout << "removing:" << word[i] << endl;
+				//cout << "removing:" << word[i] << endl;
 				word[i] = '0';
 			}
 		}
@@ -181,6 +181,25 @@ int LetterList::checkForLetters(string word)
 		return false;
 	}
 
+}
+
+void LetterList::resetHand()
+{
+	for (int i = 0; i <= 6; i++)
+	{
+		for (int j = 0; j <= 26; j++)
+		{
+			if (pLt[i].letter == Lt[j].letter)
+			{
+				Lt[j].number++;
+				pLt[i].letter = '0';
+			}
+		}
+	}
+
+	checkLetters();
+
+	cout << endl << "New hand:";
 }
 
 LetterList::LetterList()

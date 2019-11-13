@@ -14,5 +14,6 @@ class LetterList
 		void readLetters();
 		int checkPool();
 		int checkForLetters(string word);
+		void resetHand();
 };
 #endif

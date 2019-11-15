@@ -18,7 +18,7 @@ struct letters
 
 struct letters Lt[27];
 
-//letters in player's hand;
+//letters in player's hand.
 
 struct pLetters
 {
@@ -51,7 +51,7 @@ int random()
 	}
 }
 
-//add letters to player hand;
+//add letters to player hand.
 
 void LetterList::checkLetters()
 {
@@ -67,6 +67,8 @@ void LetterList::checkLetters()
 	}
 }
 
+//print the letters to console.
+
 void LetterList::printLetters()
 {
 	cout << "Available letters: ";
@@ -74,6 +76,8 @@ void LetterList::printLetters()
 		cout << pLt[i].letter << " ";
 	cout << endl;
 }
+
+//Remove letters from hand.
 
 void LetterList::removeLetters(char Let)
 {
@@ -101,6 +105,8 @@ void LetterList::removeLetters(char Let)
 
 }
 
+//Read letters from file.
+
 void LetterList::readLetters()
 {
 	std::ifstream lFile;
@@ -112,6 +118,8 @@ void LetterList::readLetters()
 		lFile >> Lt[i].number;
 	}
 }
+
+//Check the pool of letters.
 
 int LetterList::checkPool()
 {
@@ -125,7 +133,9 @@ int LetterList::checkPool()
 	return ok;
 }
 
-int LetterList::checkForLetters(string word)
+//Check if the player has the letters in his hand or if they are available on the board.
+
+int LetterList::checkForLetters(string word, string LetList)
 {
 	struct pLetters pLs[7];
 
@@ -134,6 +144,21 @@ int LetterList::checkForLetters(string word)
 	for (i = 0; i <= 6; i++)
 	{
 		pLs[i].letter = pLt[i].letter;
+	}
+
+	for (i = 0; i <= word.size() - 1; i++)
+	{
+		ok = 0;
+		for (j = 0; j <= LetList.size() && ok == 0; j++)
+		{
+			if (word[i] == LetList[j])
+			{
+				ok = 1;
+				LetList[j]= '0';
+				//cout << "removing:" << word[i] << endl;
+				word[i] = '0';
+			}
+		}
 	}
 
 	for (i = 0; i <= word.size() - 1; i++)
@@ -182,6 +207,8 @@ int LetterList::checkForLetters(string word)
 	}
 
 }
+
+//Resets the letters that the player has in his hand.
 
 void LetterList::resetHand()
 {

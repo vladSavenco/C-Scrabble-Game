@@ -7,5 +7,7 @@ class WordList
 	public:
 		WordList();
 		bool checkWord(std::string word);
+		void Run();
+		bool LSearch(std::string word);
 };
 #endif

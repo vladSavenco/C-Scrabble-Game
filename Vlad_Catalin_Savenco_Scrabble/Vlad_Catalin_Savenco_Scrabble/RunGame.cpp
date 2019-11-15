@@ -1,4 +1,4 @@
-/*#include <iostream>
+#include <iostream>
 #include "RunGame.h"
 #include "SBoard.h"
 #include "WordList.h"
@@ -8,14 +8,24 @@ using namespace std;
 
 int value=0, pValue = 0;
 
+
+WordList WL1;
+LetterList lL;
+SBoard SB;
+
 RunGame::RunGame()
 {
 
 }
 
-WordList WL;
-LetterList lL;
-SBoard SB;
+//Function that builds the list of legal words.
+
+void RunGame::RunG()
+{
+	WL1.Run();
+}
+
+//Function that gives the player his first turn.
 
 void RunGame::PlayerTurn()
 {
@@ -31,6 +41,8 @@ void RunGame::PlayerTurn()
 
 	cout << endl << "Your Score:" << pValue << endl;
 }
+
+//Function that handles the player's the other turns.
 
 void RunGame::PlayerFirstMove()
 {
@@ -50,4 +62,9 @@ void RunGame::PlayerFirstMove()
 	pValue = pValue + value;
 
 	cout << endl << "Your score:" << pValue << endl;
-}*/
+}
+
+void RunGame::score()
+{
+	cout << pValue;
+}

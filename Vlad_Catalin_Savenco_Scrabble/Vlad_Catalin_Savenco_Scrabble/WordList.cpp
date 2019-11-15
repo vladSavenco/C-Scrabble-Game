@@ -73,13 +73,11 @@ int value(std::string word)
 
 //sorting algorithm.
 
-void merge(int l, int m, int r)
+/*void merge(int l, int m, int r)
 {
 	int i, j, k,size,halfSize;
 	int n1 = m - l + 1;
 	int n2 = r - m;
-
-	// creating temporarry arrays.
 
 	size = ln.size();
 	halfSize = size/2;
@@ -89,20 +87,18 @@ void merge(int l, int m, int r)
 
 	i = 0;
 	j = 0;
-	k = 0;
+	k = l;
 
 	while (i < n1 && j < n2)
 	{
 		if (L[i].word <= R[j].word)
 		{
-			ln[k].word = L[i].word;
-			ln[k].value = L[i].value;
+			ln[k]= L[i];
 			i++;
 		}
 		else
 		{
-			ln[k].word = R[j].word;
-			ln[k].value = R[j].value;
+			ln[k] = R[j];
 			j++;
 		}
 		k++;
@@ -110,16 +106,14 @@ void merge(int l, int m, int r)
 
 	while (i < n1)
 	{
-		ln[k].word = L[i].word;
-		ln[k].value = L[i].value;
+		ln[k] = L[i];
 		i++;
 		k++;
 	}
 
 	while (j < n2)
 	{
-		ln[k].word = R[j].word;
-		ln[k].value = R[j].value;
+		ln[k] = R[j];
 		j++;
 		k++;
 	}
@@ -129,17 +123,14 @@ void mergeSort(int l, int r)
 {
 	if (l < r)
 	{
-
-		int m = l + (r - 1) / 2;
-
-		cout << m << " " << r<<endl;
+		int m = l + (r - l) / 2;
 
 		mergeSort(l, m);
 		mergeSort(m + 1, r);
 
 		merge(l, m, r);
 	}
-}
+}*/
 
 //binary search algorith that checks if the 
 
@@ -167,7 +158,22 @@ bool WordList::checkWord(string word)
 	return binSearch(ln, 0, ln.size() - 1, word);
 }
 
-WordList::WordList()
+//Linear search;
+
+bool WordList::LSearch(string word)
+{
+	for (int i = 1; i <= ln.size(); i++)
+	{
+		if (ln[i].word == word)
+			return true;
+	}
+
+	return false;
+}
+
+//Function that reads the list of words, adds them to the vector along with their value.
+
+void WordList :: Run()
 {
 	int nr = 0, userScore = 0;
 	string word;
@@ -189,7 +195,7 @@ WordList::WordList()
 		}
 	}
 
-	mergeSort(0,ln.size()-1);
+	//mergeSort(0,ln.size()-1);
 
 	/*for (int i=0;i<=ln.size()-1;i++)
 	{
@@ -197,7 +203,12 @@ WordList::WordList()
 		cout << ln[i].value << endl;
 	}*/
 
-	cout << nr<<endl;
+	cout <<"Legal Words: "<< nr << endl;
 
 	File.close();
+}
+
+WordList::WordList()
+{
+	
 }

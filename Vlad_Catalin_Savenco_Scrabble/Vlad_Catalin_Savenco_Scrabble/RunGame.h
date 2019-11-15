@@ -5,5 +5,6 @@ class RunGame
 		RunGame();
 		void PlayerTurn();
 		void PlayerFirstMove();
+		void RunG();
+		void score();
 };
-

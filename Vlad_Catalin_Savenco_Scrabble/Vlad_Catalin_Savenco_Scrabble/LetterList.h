@@ -13,7 +13,7 @@ class LetterList
 		void removeLetters(char Let);
 		void readLetters();
 		int checkPool();
-		int checkForLetters(string word);
+		int checkForLetters(string word, string LetList);
 		void resetHand();
 };
 #endif

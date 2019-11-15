@@ -1,3 +1,5 @@
+//This file containd the functions that handle the scrabble board and mannage the data that can be found on it.
+
 #include "SBoard.h"
 #include <iostream>
 #include <vector>
@@ -6,10 +8,12 @@
 #include <Windows.h>
 #include "wordList.h"
 #include "LetterList.h"
+#include "WordList.h"
 
 using namespace std;
 
 LetterList LL;
+WordList WL;
 
 //Function that takes a number as an input and changes the colour of the output text.
 
@@ -17,6 +21,8 @@ void Color(int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
+
+//The struct that holds each cell's data.
 
 struct cell
 {
@@ -201,13 +207,37 @@ int findWords(int x,int y, string direction)
 			}
 		}
 
-		val=checkValue(x,y,word,direction);
+		val=checkValue(x,y,word,"down");
+
+	}
+
+	if (direction == "down")
+	{
+		int i = y;
+
+		while (cl[x][i].character > 96 && cl[x][i].character < 123 && i >= 0)
+		{
+			i = i - 1;
+		}
+		i = i + 1;
+		y = i;
+
+		for (i; i <= 14; i++)
+		{
+			if (cl[x][i].character > 96 && cl[x][i].character < 123 && i <= 14)
+			{
+				word.push_back(cl[x][i].character);
+				nr++;
+			}
+		}
+
+		val = checkValue(x, y, word,"right");
 
 	}
 
 	if (word.size()>1)
 	{
-		cout << endl << "foud word" << word << " Value="<<val<<" pozition:"<<x<<" "<<y<<endl;
+		cout << endl << "found word " << word << " Value="<<val<<" pozition:"<<x<<" "<<y<<endl;
 	}
 
 	return val;
@@ -216,15 +246,10 @@ int findWords(int x,int y, string direction)
 
 //Function that checks if the player has all the letters in hand to form the word.
 
-string Pword()
+string Pword(string word,string LetList)
 {
-	string word;
 
-	cout << "Please input your word, thank you:";
-
-	cin >> word;
-
-	while (LL.checkForLetters(word) == false)
+	while (LL.checkForLetters(word,LetList) == false && WL.LSearch(word)==false)
 	{
 		if (word == "~reset~")
 		{
@@ -318,6 +343,58 @@ int checkProximity(string word, string direction, int m, int n)
 	return ok;
 }
 
+//Function that looks on the line where the player inputs a word and checks if there are any letters that can be used.
+
+string findLeters(string word, int m, int n, string direction)
+{
+	string letters;
+	int size = word.size();
+
+	if (direction == "right")
+	{
+		int j = n,c=n+size-1;
+
+		while (cl[m][j - 1].character > 96 && cl[m][j - 1].character < 123 && j>0)
+		{
+			j--;
+		}
+
+		while (cl[m][c].character > 96 && cl[m][c].character < 123 && c != 14)
+		{
+			c++;
+		}
+
+		for (j;j <= c; j++)
+		{
+			letters.push_back(cl[m][j].character);
+		}
+	}
+
+	if (direction == "down")
+	{
+		int j = n, c = n + size - 1;
+
+		while (cl[j-1][n].character > 96 && cl[j-1][n].character < 123 && j > 0)
+		{
+			j--;
+		}
+
+		while (cl[c][m].character > 96 && cl[c][m].character < 123 && c != 14)
+		{
+			c++;
+		}
+
+		for (j; j <= c; j++)
+		{
+			letters.push_back(cl[j][n].character);
+		}
+	}
+
+	cout<<endl<<"found letters: "<<letters<<endl;
+
+	return letters;
+}
+
 //Function that adds a given word starting at given cooordinates, towards given direction.
 
 int SBoard::addWord(string word, int m, int n, string direction)
@@ -333,7 +410,7 @@ int SBoard::addWord(string word, int m, int n, string direction)
 					ok = 1;
 				cl[i][j].character = word[nr];
 				LL.removeLetters(word[nr]);
-				val = findWords(i, j, direction);
+				val = val+findWords(i, j, direction);
 				nr++;
 			}
 		}
@@ -349,7 +426,7 @@ int SBoard::addWord(string word, int m, int n, string direction)
 					ok = 1;
 				cl[j][i].character = word[nr];
 				LL.removeLetters(word[nr]);
-				val = findWords(i, j, direction);
+				val = val+findWords(i, j, direction);
 				nr++;
 			}
 		}
@@ -364,6 +441,8 @@ int SBoard::inputCoordinates(string word, string direction)
 {
 	int x, y, value = 0,newVal=0;
 
+	string LetList;
+
 	cout << "Please input the x axys:" << endl;
 	cin >> x;
 	cout << "Please input the y axis:" << endl;
@@ -377,6 +456,10 @@ int SBoard::inputCoordinates(string word, string direction)
 		cout << "Please input the y axis:" << endl;
 		cin >> y;
 	}
+
+	LetList = findLeters(word,x,y,direction);
+
+	word=Pword(word, LetList);
 
 	newVal=addWord(word, x, y, direction);
 
@@ -395,7 +478,12 @@ int SBoard::firstWord()
 
 	std::string word, direction;
 
-	word = Pword();
+	cout << "Please input your word: ";
+	cin >> word;
+
+	string LetList="0";
+
+	word=Pword(word, LetList);
 
 	direction = rightDown();
 
@@ -414,7 +502,13 @@ int SBoard::pAddWord()
 
 	std::string word, direction;
 
-	word = Pword();
+	cout << "Please input your word: ";
+	cin >> word;
+
+	if (word == "~reset~")
+	{
+		LL.resetHand();
+	}
 
 	direction = rightDown();
 

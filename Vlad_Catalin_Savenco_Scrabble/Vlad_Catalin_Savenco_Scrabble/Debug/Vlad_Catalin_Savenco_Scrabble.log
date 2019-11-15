@@ -1,2 +1,7 @@
-﻿  WordList.cpp
+﻿  LetterList.cpp
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(139,16): warning C4018: '<=': signed/unsigned mismatch
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(142,17): warning C4018: '<=': signed/unsigned mismatch
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(154,16): warning C4018: '<=': signed/unsigned mismatch
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(169,16): warning C4018: '<=': signed/unsigned mismatch
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\LetterList.cpp(184,16): warning C4018: '<=': signed/unsigned mismatch
   Vlad_Catalin_Savenco_Scrabble.vcxproj -> D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Debug\Vlad_Catalin_Savenco_Scrabble.exe

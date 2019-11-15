@@ -1,7 +1,11 @@
-﻿  Vlad_Catalin_Savenco_Scrabble.cpp
+﻿  RunGame.cpp
+  SBoard.cpp
+  WordList.cpp
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\SBoard.cpp(29,19): warning C4309: 'initializing': truncation of constant value
+D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Vlad_Catalin_Savenco_Scrabble\WordList.cpp(165,20): warning C4018: '<=': signed/unsigned mismatch
   Generating code
-  62 of 308 functions (20.1%) were compiled, the rest were copied from previous compilation.
+  6 of 308 functions ( 1.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    40 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Vlad_Catalin_Savenco_Scrabble.vcxproj -> D:\GitHubProject\210CT\Vlad_Catalin_Savenco_Scrabble\Release\Vlad_Catalin_Savenco_Scrabble.exe

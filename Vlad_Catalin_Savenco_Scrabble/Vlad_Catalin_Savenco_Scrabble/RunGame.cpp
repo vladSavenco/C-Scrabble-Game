@@ -53,6 +53,8 @@ void RunGame::PlayerFirstMove()
 	lL.checkLetters();
 	lL.printLetters();
 
+	cout << "Input ~reset~ to get a new hand" << endl;
+
 	value = SB.firstWord();
 
 	system("CLS");

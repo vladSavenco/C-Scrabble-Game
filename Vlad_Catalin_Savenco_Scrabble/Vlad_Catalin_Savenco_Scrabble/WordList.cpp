@@ -162,7 +162,7 @@ bool WordList::checkWord(string word)
 
 bool WordList::LSearch(string word)
 {
-	for (int i = 1; i <= ln.size(); i++)
+	for (int i = 0; i <= ln.size()-1; i++)
 	{
 		if (ln[i].word == word)
 			return true;
